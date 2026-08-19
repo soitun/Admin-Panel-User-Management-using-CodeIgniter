@@ -39,6 +39,12 @@ OR
 
 **XAMPP : c:/xampp/htdocs/cias**
 
+Install PHP dependencies (Composer autoloader) by running the following command from the project root:
+
+```bash
+composer install
+```
+
 Open browser; goto [localhost/cias](http://localhost/cias) and press enter:
 
 The login screen will appear.

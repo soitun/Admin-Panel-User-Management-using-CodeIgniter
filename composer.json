@@ -1,0 +1,10 @@
+{
+    "name": "kishor10d/cias",
+    "description": "CIAS - Admin Panel (CodeIgniter 3)",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\Libraries\\": "application/libraries/"
+        }
+    }
+}
