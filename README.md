@@ -1,86 +1,112 @@
-# Admin Panel - User Management using CodeIgniter
-**Admin Panel - User Management Demo using CodeIgniter + AdminLTE Bootstrap Theme**
+# Admin Panel — User Management using CodeIgniter
 
-The code is uploaded to demonstrate the simple role based Admin Panel application using CodeIgniter(MVC Framework)
+> [!WARNING]
+> ## Legacy repository — no active maintenance
+> This CodeIgniter project is retained as a reference implementation and is **not actively maintained**. Do not use it as the starting point for new production work. New features, security improvements, and ongoing maintenance are focused on the modern rewrite:
+>
+> **[CIAS Admin Panel — React + NestJS](https://github.com/kishor10d/Admin-Panel-User-Management-using-React-NodeJS)**
 
-**Purpose :**
+A legacy, role-based administration panel built with CodeIgniter, PHP, MySQL, AdminLTE, Bootstrap, and jQuery. It demonstrates the common building blocks of an administration area: login, user management, roles and access rights, password recovery, and login history.
 
-For every website, we need some sort of admin panel to monitor over the content of the website. The developers must have to start with the basic functinalities like login, logout, create/manage admin users, manage their roles, change password, forget password etc. This repository gives you all above things readymade as boilerplate for admin panel (but by using CodeIgniter PHP MVC framework). You just start code to add your project feature in it.
+## Legacy stack
+
+| Area | Technology |
+| --- | --- |
+| Framework | CodeIgniter 3.1.x |
+| Language | PHP 5.6+ legacy codebase |
+| Database | MySQL with MySQLi |
+| UI | AdminLTE 2, Bootstrap 3, jQuery |
+| Dependencies | Composer autoloader and bundled front-end assets |
 
 ## Features
-1. Login, Logout.
-2. Change Password, Forget Password.
-3. Create, Update, Delete Users.
-4. User defined Roles & Access (You can create roles and provide rights to the hardcoded modules).
-3. Login history of Users.
 
+- Session-based login and logout.
+- User creation, editing, soft deletion, and profile updates.
+- Role management with a configurable access matrix for application modules.
+- Password change, forgot-password flow, and reset-password email template.
+- Per-user login history with filtering and pagination.
+- Example permission-controlled Task and Booking modules.
+- AdminLTE-based dashboard and administration layout.
 
-## Version Information
-**1) Upto Release 1.2 -** CodeIgniter 2.2, PHP version 5.1.6 or newer, MySQL (4.1+), MySQLi
-    
-**2) Latest (master) -** CodeIgniter 3.1.9, PHP version 5.6 or newer, MySQL (5.1+), MySQLi
+## Modern rewrite
 
-## Installation
+The maintained successor is a TypeScript monorepo built for new projects and modern deployment practices.
 
-Download the code from repository.
-Unzip the zip file.
+| Legacy repository | Maintained rewrite |
+| --- | --- |
+| CodeIgniter and PHP | React, NestJS, and TypeScript |
+| SQL import | TypeORM migrations |
+| Session-based authentication | Secure cookie sessions with rotated refresh tokens |
+| Legacy role matrix | Server-enforced RBAC permissions |
+| AdminLTE 2 | AdminLTE 4 |
 
-Open browser; goto [localhost/phpmyadmin](http://localhost/phpmyadmin).
+Start new work with **[CIAS Admin Panel — React + NestJS](https://github.com/kishor10d/Admin-Panel-User-Management-using-React-NodeJS)**.
 
-Create a database with name "cias" and import the file "cias.sql" in that database.
+## Running the legacy application locally
 
-Copy the remaining code into your root directory:
+### Requirements
 
-for example, for windows
+- PHP compatible with this legacy CodeIgniter 3.1.x codebase.
+- MySQL or MariaDB.
+- Apache with PHP and `mod_rewrite` when using clean URLs.
+- Composer.
 
-**WAMP : c:/wamp/www/cias**
+### 1. Place the project in your web root
 
-OR
+For example:
 
-**XAMPP : c:/xampp/htdocs/cias**
+```text
+XAMPP: C:\xampp\htdocs\cias
+WAMP: C:\wamp\www\cias
+```
 
-Install PHP dependencies (Composer autoloader) by running the following command from the project root:
+### 2. Install the Composer autoloader
+
+From the repository root:
 
 ```bash
 composer install
 ```
 
-Open browser; goto [localhost/cias](http://localhost/cias) and press enter:
+### 3. Create and configure the database
 
-The login screen will appear.
+1. Create an empty MySQL database, for example `cias`.
+2. Import [db/cias.sql](db/cias.sql).
+3. Set the database host, database name, username, and password in `application/config/database.php`.
+4. Update `base_url` in `application/config/config.php` to match your local URL, for example `http://localhost/cias/`.
 
-To login, I am going to provide the user-email ids and password below.
+The SQL file includes sample data intended only for local demonstration. Review it and change all sample accounts and passwords before exposing an installation to any network.
 
-**System Administrator Account :**
+### 4. Open the application
 
-email : admin@example.com
+Visit the configured base URL in your browser, for example:
 
-password : admin
+```text
+http://localhost/cias/
+```
 
-Once you logged in with System Administrator account, you can create user or edit previous user if you want.
-You can set passwords for other users.
-In the provided Youtube video, the passwords were different when the video was created. So, please use above passwords.
+If application routes return a 404 error, enable Apache `mod_rewrite` and ensure the web server permits the project’s URL rewrite configuration.
 
-**Youtube Links :**
+## Security notice
 
-[CodeIgniter Admin Panel Demo](https://youtu.be/RFRXUd8LHUM) : This video contain the demo of CodeIgniter Admin Panel.
+This repository contains legacy framework code and application patterns. It does **not** receive regular security patches, dependency upgrades, or production support.
 
-[![CodeIgniter Admin Panel Demo](http://img.youtube.com/vi/RFRXUd8LHUM/0.jpg)](http://www.youtube.com/watch?v=RFRXUd8LHUM)
+If you must run it temporarily:
 
-[How to setup CodeIgniter Admin Panel](https://youtu.be/tU1PbcRj7ww) : This video contain the procedure of setting up CodeIgniter Admin Panel.
+- Use it only in a controlled environment.
+- Set `ENVIRONMENT` to `production` in `index.php` outside local development.
+- Change the sample administrator credentials and application secrets.
+- Enable HTTPS, restrict database access, and protect server configuration files.
+- Review and enable CSRF protection before exposing write operations.
+- Plan a migration to the maintained React + NestJS project.
 
-[![How to setup CodeIgniter Admin Panel](http://img.youtube.com/vi/tU1PbcRj7ww/0.jpg)](http://www.youtube.com/watch?v=tU1PbcRj7ww)
+## Demo videos
 
+- [CodeIgniter Admin Panel Demo](https://youtu.be/RFRXUd8LHUM)
+- [Legacy setup walkthrough](https://youtu.be/tU1PbcRj7ww)
 
-**ISSUE # 1 : After login "loginMe" controller is not found :**
+[![CodeIgniter Admin Panel Demo](https://img.youtube.com/vi/RFRXUd8LHUM/0.jpg)](https://www.youtube.com/watch?v=RFRXUd8LHUM)
 
-Lot of people raising this issue, I resolved it 4-5 times for every user. People are not searching for closed issues. Thats why I am going to put this here.
+## License
 
-How to get over this issue?
-
-1) enable mod_rewrite.dll (or mod_rewrite.so) by removing leading # in httpd.conf.
-2) After that, follow this solution https://stackoverflow.com/questions/24472349/htaccess-doesnt-work-on-xampp-windows-7
-
-**ISSUE # 2 : Call to undefined function password_verify() :**
-
-Solution is here : [Call to undefined function password_verify()](https://github.com/kishor10d/Admin-Panel-User-Management-using-CodeIgniter/issues/1)
+See [LICENSE](LICENSE) for licensing information.
